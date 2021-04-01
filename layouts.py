@@ -1,19 +1,18 @@
 import PySimpleGUI as sg
 
 
-# Criar janelas e estilos
-def tela_inicial():
+def home_screen():
     sg.theme('DarkAmber')
     layout = [
-        [sg.Button('CONFIG')],
+        [sg.Button('CONFIG', key='configuration_button')],
         [sg.Checkbox('HOJE'), sg.Checkbox('CONFIGURAÇÃO')],
         [sg.Button('BATER PONTO')],
         [sg.ProgressBar(1000, orientation='h', size=(20, 20), key='progressbar')]
     ]
-    return sg.Window('Tela inicial', layout=layout, finalize=True)
+    return sg.Window('Home screen', layout=layout, finalize=True)
 
 
-def tela_configuracao():
+def configuration_screen():
     sg.theme('DarkAmber')
     column_to_be_centred = [
         [sg.Text('SeniorX')],
@@ -23,30 +22,10 @@ def tela_configuracao():
         [sg.Text('Login'), sg.Input()],
         [sg.Text('Senha'), sg.Input()],
         [sg.Checkbox('SALVAR LOGINS')],
-        [
-            sg.Input(key='A', size=(20, 1)),
-            sg.CalendarButton('CONFIGURAÇÃO DE DIAS A SEREM BATIDOS',
-                              close_when_date_chosen=True,
-                              target='A',
-                              location=(0, 0),
-                              no_titlebar=False)
-        ]
     ]
 
     layout = [
-        [sg.Button('VOLTAR')],
+        [sg.Button('VOLTAR', key='back_button')],
         [sg.Column(column_to_be_centred, element_justification='center')]
     ]
-    return sg.Window('Tela de configuração', layout=layout, finalize=True)
-
-
-# Criar janelas iniciais
-
-
-if __name__ == '__main__':
-    janela1 = tela_configuracao()
-    while True:
-        evento, valor = janela1.read()
-        print(evento,'******', valor)
-        if evento in (sg.WIN_CLOSED, 'Exit'):
-            break
+    return sg.Window('Configuration screen', layout=layout, finalize=True)
