@@ -1,4 +1,6 @@
 import PySimpleGUI as sg
+
+from auto_jira.validators import EmailValidator
 from layouts import home_screen, configuration_screen
 
 if __name__ == '__main__':
