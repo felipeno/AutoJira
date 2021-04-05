@@ -1,6 +1,6 @@
 import pytest
 
-from auto_jira.validators import EmailValidator, PasswordValidator
+from auto_jira.model.service.validators import EmailValidator, PasswordValidator
 
 
 def test_exists_email_validator():
@@ -17,7 +17,7 @@ def test_exists_email_validator():
 )
 def test_valid_email(email):
     email_validator = EmailValidator(email)
-    validator = email_validator.email_validator()
+    validator = email_validator.emails_validator()
     assert validator[0]
 
 
@@ -31,7 +31,7 @@ def test_valid_email(email):
 )
 def test_invalid_email(email):
     email_validator = EmailValidator(email)
-    validator = email_validator.email_validator('Email inválido: não contém "@" ou está em branco antes do "@".')
+    validator = email_validator.emails_validator('Email inválido: não contém "@" ou está em branco antes do "@".')
     assert not validator[0] and validator[1] == 'Email inválido: não contém "@" ou está em branco antes do "@".'
 
 
@@ -49,7 +49,7 @@ def test_exists_pass_validator():
 )
 def test_valid_pass(password):
     pass_validator = PasswordValidator(password)
-    validator = pass_validator.password_validator()
+    validator = pass_validator.passwords_validator()
     assert validator[0]
 
 
@@ -62,6 +62,6 @@ def test_valid_pass(password):
 )
 def test_invalid_pass(password):
     pass_validator = PasswordValidator(password)
-    validator = pass_validator.password_validator()
+    validator = pass_validator.passwords_validator()
     assert not validator[0] and validator[1] == 'Senha inválida: senha em branco.'
 
