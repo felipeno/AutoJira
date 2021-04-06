@@ -6,6 +6,6 @@ install:
   - pipenv sync --dev
 script:
   - flake8
-  - pytest tests --cov=tests
+  - pytest auto_jira --cov=auto_jira
 after_success:
   - codecov
