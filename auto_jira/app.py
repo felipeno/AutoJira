@@ -1,7 +1,10 @@
+"""
+This module is the main module.
+In here that the application runs.
+"""
 import PySimpleGUI as sg
 
 from auto_jira.controller.controller import Controller
-from auto_jira.model.service.validators import EmailValidator, PasswordValidator
 from auto_jira.view.layouts import home_screen, configuration_screen
 
 
@@ -26,6 +29,8 @@ if __name__ == '__main__':
             if not check_emails or not check_pass:
                 window.Element('atualization_text').Update('Senha(s) ou email(s) inválido(s).')
             else:
+                if values.get('save_users'):
+                    print('está marcado')
                 configuration.hide()
                 home.un_hide()
 

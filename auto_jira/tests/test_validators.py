@@ -16,9 +16,9 @@ def test_exists_email_validator():
     ]
 )
 def test_valid_email(email):
-    email_validator = EmailValidator(email)
+    email_validator = EmailValidator([email])
     validator = email_validator.emails_validator()
-    assert validator[0]
+    assert validator
 
 
 @pytest.mark.parametrize(
@@ -30,9 +30,9 @@ def test_valid_email(email):
     ]
 )
 def test_invalid_email(email):
-    email_validator = EmailValidator(email)
-    validator = email_validator.emails_validator('Email inválido: não contém "@" ou está em branco antes do "@".')
-    assert not validator[0] and validator[1] == 'Email inválido: não contém "@" ou está em branco antes do "@".'
+    email_validator = EmailValidator([email])
+    validator = email_validator.emails_validator()
+    assert not validator
 
 
 def test_exists_pass_validator():
@@ -48,9 +48,9 @@ def test_exists_pass_validator():
     ]
 )
 def test_valid_pass(password):
-    pass_validator = PasswordValidator(password)
+    pass_validator = PasswordValidator([password])
     validator = pass_validator.passwords_validator()
-    assert validator[0]
+    assert validator
 
 
 @pytest.mark.parametrize(
@@ -61,7 +61,6 @@ def test_valid_pass(password):
     ]
 )
 def test_invalid_pass(password):
-    pass_validator = PasswordValidator(password)
+    pass_validator = PasswordValidator([password])
     validator = pass_validator.passwords_validator()
-    assert not validator[0] and validator[1] == 'Senha inválida: senha em branco.'
-
+    assert not validator

@@ -1,0 +1,2 @@
+[run]
+omit = auto_jira/app.py, auto_jira/view/layouts.py
