@@ -28,4 +28,3 @@ def test_controller_email_validator_return_a_bool(email):
 )
 def test_controller_password_validator_return_a_bool(password):
     assert isinstance(Controller.passwords_validator([password]), bool)
-
