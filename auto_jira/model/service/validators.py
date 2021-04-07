@@ -42,13 +42,20 @@ class DataBaseValidator:
     def __init__(self, path):
         self.path = path
 
-    def exist_validator(self) -> bool:
+    def exists_database_validator(self) -> bool:
         """This method validates if exists a database or not, returning this answer in a bool.
 
         :return: bool
         """
         try:
-            sqlite3.connect('file:'+self.path+'?mode=rw', uri=True)
+            sqlite3.connect('file:' + self.path + '?mode=rw', uri=True)
+            return True
+        except sqlite3.OperationalError:
+            return False
+
+    def exists_table_validator(self, cursor, table_name):
+        try:
+            cursor.execute(f'SELECT * FROM {table_name}')
             return True
         except sqlite3.OperationalError:
             return False
